@@ -1,0 +1,178 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Registracijos forma</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-tab-group [(selectedIndex)]="selectedTab" (selectedIndexChange)="onTabChange($event)">
+
+        <!-- ĮMONĖ -->
+
+        <mat-tab label="Įmonė">
+          <div class="tab-content">
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Įmonės pavadinimas</mat-label>
+                  <input matInput formControlName="companyName" placeholder="Pvz. UAB Kretinga Tech" />
+                  @if (addressForm.controls['companyName'].hasError('required')) {
+                    <mat-error>Laukas yra <strong>privalomas</strong></mat-error>
+                  }
+                  @if (addressForm.controls['companyName'].hasError('minlength')) {
+                    <mat-error>Mažiausiai <strong>2</strong> simboliai</mat-error>
+                  }
+                  @if (addressForm.controls['companyName'].hasError('maxlength')) {
+                    <mat-error>Daugiausiai <strong>30</strong> simbolių</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Įmonės kodas</mat-label>
+                  <input matInput formControlName="companyCode" placeholder="Pvz. 123456789" />
+                  @if (addressForm.controls['companyCode'].hasError('pattern')) {
+                    <mat-error>Leidžiami tik skaičiai</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>PVM registracijos kodas</mat-label>
+                  <input matInput formControlName="vatCode" placeholder="Pvz. LT123456789" />
+                  @if (addressForm.controls['vatCode'].hasError('pattern')) {
+                    <mat-error>Formatas: <strong>skaičiai</strong> arba <strong>LT + skaičiai</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Adresas</mat-label>
+                  <input matInput formControlName="address" placeholder="Gatvė, namo nr., miestas" />
+                  @if (addressForm.controls['address'].hasError('required')) {
+                    <mat-error>Adresas yra <strong>privalomas</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>El. pašto adresas</mat-label>
+                  <input matInput type="email" formControlName="email" placeholder="pvz. info@imone.lt" />
+                  @if (addressForm.controls['email'].hasError('required')) {
+                    <mat-error>El. paštas yra <strong>privalomas</strong></mat-error>
+                  }
+                  @if (addressForm.controls['email'].hasError('email')) {
+                    <mat-error>Įveskite teisingą el. pašto adresą</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Telefonas</mat-label>
+                  <input
+                    matInput
+                    formControlName="phone"
+                    placeholder="+37065312345"
+                    maxlength="12"
+                  />
+                  @if (addressForm.controls['phone'].hasError('pattern')) {
+                    <mat-error>Naudokite formatą <strong>+3706xxxxxxx</strong> (10–12 simbolių)</mat-error>
+                  }
+                  @if (addressForm.controls['phone'].hasError('minlength')) {
+                    <mat-error>Per trumpas numeris</mat-error>
+                  }
+                  @if (addressForm.controls['phone'].hasError('maxlength')) {
+                    <mat-error>Per ilgas numeris</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- KLIENTAS -->
+
+        <mat-tab label="Klientas">
+          <div class="tab-content">
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Vardas</mat-label>
+                  <input matInput formControlName="firstName" placeholder="Vardas" />
+                  @if (addressForm.controls['firstName'].hasError('required')) {
+                    <mat-error>Laukas privalomas</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Pavardė</mat-label>
+                  <input matInput formControlName="lastName" placeholder="Pavardė" />
+                  @if (addressForm.controls['lastName'].hasError('required')) {
+                    <mat-error>Laukas privalomas</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Pareigos</mat-label>
+                  <input matInput formControlName="position" placeholder="Pvz. Pardavimų vadovas" />
+                  @if (addressForm.controls['position'].hasError('required')) {
+                    <mat-error>Laukas privalomas</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Telefonas</mat-label>
+                  <input
+                    matInput
+                    formControlName="phone"
+                    placeholder="+3706xxxxxxx"
+                    maxlength="12"
+                  />
+                  @if (addressForm.controls['phone'].hasError('required')) {
+                    <mat-error>Telefonas yra <strong>privalomas</strong></mat-error>
+                  }
+                  @else if (addressForm.controls['phone'].hasError('maxlength')) {
+                    <mat-error>Per ilgas numeris (maks. 12 simbolių)</mat-error>
+                  }
+                  @else if (addressForm.controls['phone'].hasError('pattern')) {
+                    <mat-error>Naudokite formatą <strong>+3706xxxxxxx</strong></mat-error>
+                  }
+                  @else if (addressForm.controls['phone'].hasError('minlength')) {
+                    <mat-error>Per trumpas numeris</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-flat-button color="primary" type="submit" [disabled]="addressForm.invalid">
+        Registruotis
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,71 @@
+.sidenav-container {
+  height: 100vh;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+.sidenav {
+  width: 280px;
+  background-color: var(--mat-sys-surface-container);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.sidenav-header {
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  justify-content: center;
+  background-color: var(--mat-sys-surface-container);
+  align-items: center;
+  display: flex;
+  height: 64px;
+}
+
+mat-nav-list {
+  padding-top: 12px;
+}
+
+mat-divider {
+  margin-top: auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a.mat-mdc-list-item {
+  border-radius: 8px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+a.mat-mdc-list-item:hover {
+  background-color: color-mix(in srgb, var(--mat-sys-surface-container-highest) 80%, transparent);
+}
+
+a.mat-mdc-list-item.active {
+  background-color: color-mix(in srgb, var(--mat-sys-primary-container) 70%, var(--mat-sys-surface-container));
+  color: var(--mat-sys-on-primary-container);
+}
+
+a.mat-mdc-list-item.active mat-icon,
+a.mat-mdc-list-item.active span {
+  color: var(--mat-sys-on-primary-container);
+}
+
+a.mat-mdc-list-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background-color: var(--mat-sys-primary);
+  opacity: 0.8;
+}
+
+a.mat-mdc-list-item {
+  position: relative;
+}
