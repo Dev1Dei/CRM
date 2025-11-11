@@ -15,12 +15,14 @@
         <mat-icon matListItemIcon>dashboard</mat-icon>
         <span matListItemTitle>Dashboard</span>
       </a>
+
       <a
         mat-list-item
         [routerLink]="['/registruoti', 'imone']"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        (click)="drawer.close()">
+        (click)="drawer.close()"
+      >
         <mat-icon matListItemIcon>business</mat-icon>
         <span matListItemTitle>Registruoti įmonę</span>
       </a>
@@ -30,7 +32,8 @@
         [routerLink]="['/registruoti', 'klientas']"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        (click)="drawer.close()">
+        (click)="drawer.close()"
+      >
         <mat-icon matListItemIcon>person_add</mat-icon>
         <span matListItemTitle>Registruoti klientą</span>
       </a>
@@ -40,7 +43,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="top-toolbar">
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -48,7 +51,7 @@
       <span class="spacer"></span>
     </mat-toolbar>
 
-    <div class="content">
+    <div class="scrollable-content">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

@@ -10,3 +10,32 @@ app-root, .d-flex {
   color: var(--mat-sys-on-surface);
   min-height: 100vh;
 }
+
+/* === Common Base === */
+.mdc-snackbar__surface {
+  border-radius: 8px !important;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.snackbar-success .mdc-snackbar__surface {
+  background-color: #2e7d32 !important;
+  color: #fff !important;
+}
+
+.snackbar-error .mdc-snackbar__surface {
+  background-color: #c62828 !important;
+  color: #fff !important;
+}
+
+.snackbar-info .mdc-snackbar__surface {
+  background-color: #0277bd !important;
+  color: #fff !important;
+}
+
+.snackbar-error .mat-mdc-snack-bar-action,
+.snackbar-success .mat-mdc-snack-bar-action,
+.snackbar-info .mat-mdc-snack-bar-action {
+  color: #fff !important;
+  opacity: 0.9;
+}

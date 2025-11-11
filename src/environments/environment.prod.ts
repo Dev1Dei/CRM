@@ -7,5 +7,6 @@ export const environment = {
     storageBucket: "trecia-uzduotis-crm.firebasestorage.app",
     messagingSenderId: "1002658247515",
     appId: "1:1002658247515:web:1638a55496fe9d5bbca07e",
+    databaseURL: "https://trecia-uzduotis-crm-default-rtdb.europe-west1.firebasedatabase.app",
   }
 };
