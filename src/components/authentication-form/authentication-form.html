@@ -1,0 +1,65 @@
+@if (showForm) {
+  <form [formGroup]="authForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="auth-card">
+      <mat-card-header>
+        <mat-card-title>{{ isLoginMode ? 'Prisijungimas' : 'Registracija' }}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        @if (statusMessage) {
+          <div
+            class="alert alert-{{ statusType === 'error' ? 'danger' : statusType }} alert-dismissible fade show mt-3 mb-2 text-center"
+            role="alert"
+          >
+            {{ statusMessage }}
+            <button type="button" class="btn-close" (click)="statusMessage = null" aria-label="Close"></button>
+          </div>
+        }
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>El. pašto adresas</mat-label>
+              <input matInput type="email" formControlName="email" placeholder="pvz. user@email.lt" />
+              @if (isFieldInvalid('email') && authForm.controls['email'].hasError('required')) {
+                <mat-error>El. paštas yra <strong>privalomas</strong></mat-error>
+              }
+              @if (isFieldInvalid('email') && authForm.controls['email'].hasError('email')) {
+                <mat-error>Neteisingas el. pašto formatas</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Slaptažodis</mat-label>
+              <input matInput type="password" formControlName="password" placeholder="Slaptažodis" />
+              @if (isFieldInvalid('password') && authForm.controls['password'].hasError('required')) {
+                <mat-error>Slaptažodis yra <strong>privalomas</strong></mat-error>
+              }
+              @if (isFieldInvalid('password') && authForm.controls['password'].hasError('minlength')) {
+                <mat-error>Mažiausiai <strong>6</strong> simboliai</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+
+        @if (loading) {
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        }
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-flat-button color="primary" type="submit" [disabled]="authForm.invalid || loading">
+          {{ loading ? 'Apdorojama...' : isLoginMode ? 'Prisijungti' : 'Registruotis' }}
+        </button>
+
+        <button mat-button type="button" color="accent" (click)="toggleMode()">
+          {{ isLoginMode ? 'Neturi paskyros? Registruokis' : 'Turi paskyrą? Prisijunk' }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+}

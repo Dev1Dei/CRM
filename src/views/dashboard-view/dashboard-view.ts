@@ -27,8 +27,7 @@ import {SnackbarService} from '../../services/snackbar/snackbar-service';
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    DatePipe,
-    NgIf
+    DatePipe
   ]
 })
 export class DashboardView implements OnInit {
